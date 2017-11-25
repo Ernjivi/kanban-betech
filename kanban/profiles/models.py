@@ -15,13 +15,13 @@ class Profile(models.Model):
     GENDER_CHOICES = (
         (MALE_CHOICE, 'Male'),
         (FEMALE_CHOICE, 'Female'),
-        (NOT_SPECIFIED_CHOICE, 'Not specified')
+        (OTHER_CHOICE, 'Not specified')
     )
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
     birth_date = models.DateField(null=True, blank=True)
     profile_image = models.ImageField(upload_to='profile_images', null=True, blank=True)
-    gender = models.PositiveSmallIntegerField(choices=GENDER_CHOICES, default=NOT_SPECIFIED_CHOICE)
+    gender = models.PositiveSmallIntegerField(choices=GENDER_CHOICES, default=OTHER_CHOICE)
 
     def __str__(self):
 
