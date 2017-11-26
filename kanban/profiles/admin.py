@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from profiles.models import Profile
+
+@admin.register(Profile)
+class ProfileModelAdmin(admin.ModelAdmin):
+    """
+    Model admin for profile model.
+    """
+    pass
