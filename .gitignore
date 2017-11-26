@@ -8,4 +8,5 @@ Thumbs.db
 kanban/kanban/settings.py
 
 __pycache__/
+*/.vscode/
 
