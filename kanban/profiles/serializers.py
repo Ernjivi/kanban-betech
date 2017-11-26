@@ -22,7 +22,7 @@ class UserSerializer(serializers.ModelSerializer):
     Serializer for user model.
     """
 
-    profile = ProfileSerializer(many=False)
+    profile = ProfileSerializer(many=False, required=False)
 
     class Meta:
         model = USER
@@ -39,14 +39,16 @@ class UserSerializer(serializers.ModelSerializer):
         return email
 
     def create(self, validated_data):
-        profile_data = validated_data.pop('profile')
+        profile_data = validated_data.pop('profile', None)
         user = super(UserSerializer, self).create(validated_data)
-        self.update_or_create_profile(user=user, **profile_data)
+        if profile_data:
+            self.update_or_create_profile(user=user, **profile_data)
         return user
 
     def update(self, instance, validated_data):
-        profile_data = validated_data.pop('profile')
-        self.update_or_create_profile(instance, **profile_data)
+        profile_data = validated_data.pop('profile', None)
+        if profile_data:
+            self.update_or_create_profile(instance, **profile_data)
         return super(UserSerializer, self).update(instance, validated_data)
 
     def update_or_create_profile(self, user, **kwargs):
