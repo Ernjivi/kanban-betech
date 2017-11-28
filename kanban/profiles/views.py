@@ -8,5 +8,13 @@ from profiles.serializers import UserSerializer
 USER = get_user_model()
 
 class UserViewSet(ModelViewSet):
+    """
+    Viewset to create, edit, update and list users.
+    """
+
     queryset = USER.objects.all()
     serializer_class = UserSerializer
+
+
+
+
