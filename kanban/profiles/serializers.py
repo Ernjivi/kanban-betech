@@ -7,6 +7,23 @@ from profiles.models import Profile
 
 USER = get_user_model()
 
+
+class ChangePasswordSerializer(serializers.Serializer):
+    """
+    Serializer used to let the user change password.
+    """
+
+    current_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
+    def validate_current_password(self, current_password):
+
+        user = self.context['request'].user
+        if not user.check_password(current_password):
+            raise serializers.ValidationError('The current password doesn\'t match.')
+
+        return current_password
+
 class ProfileSerializer(serializers.ModelSerializer):
     """
     Serializer for profile model.
