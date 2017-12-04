@@ -6,11 +6,12 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from profiles.serializers import UserSerializer, ChangePasswordSerializer
+from utils.mixins import PermissionsByActionMixin
 
 
 USER = get_user_model()
 
-class UserViewSet(ModelViewSet):
+class UserViewSet(PermissionsByActionMixin, ModelViewSet):
     """
     Viewset to create, edit, update and list users.
     """
@@ -29,5 +30,3 @@ class UserViewSet(ModelViewSet):
             return Response({'status': 'password set'})
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
