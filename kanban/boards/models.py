@@ -23,7 +23,7 @@ class Card(models.Model):
     Board card model.
     """
 
-    board = models.ForeignKey(Board)
+    board = models.ForeignKey(Board, related_name='cards')
     name = models.CharField(max_length=255)
     assigned = models.ManyToManyField(settings.AUTH_USER_MODEL)
     due_date = models.DateTimeField(null=True, blank=True)
