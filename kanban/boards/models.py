@@ -8,8 +8,6 @@ class Board(models.Model):
     """
 
     name = models.CharField(max_length=255)
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="boards")
-    colaborators = models.ManyToManyField(settings.AUTH_USER_MODEL)
     
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
@@ -23,10 +21,25 @@ class Card(models.Model):
     Board card model.
     """
 
+    STATUS_BACKLOG = 0
+    STATUS_FREEZER = 1
+    STATUS_TODO = 2
+    STATUS_ON_GOING = 3
+    STATUS_TEST = 4
+    STATUS_DONE = 5
+
+    STATUS_CHOICES = (
+        (STATUS_BACKLOG, 'Backlog'),
+        (STATUS_FREEZER, 'Freezer'),
+        (STATUS_TODO, 'To-Do'),
+        (STATUS_ON_GOING, 'On going'),
+        (STATUS_TEST, 'Test'),
+        (STATUS_DONE, 'Done'),
+    )
+
     board = models.ForeignKey(Board, related_name='cards')
     name = models.CharField(max_length=255)
-    assigned = models.ManyToManyField(settings.AUTH_USER_MODEL)
-    due_date = models.DateTimeField(null=True, blank=True)
+    satatus = models.PositiveSmallIntegerField(choices=STATUS_CHOICES, default=STATUS_BACKLOG)
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
