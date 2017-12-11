@@ -7,7 +7,6 @@ class PermissionsByActionMixin(object):
     permission_classes_by_action = {}
 
     def get_permissions(self):
-        print('Hello world!')
         try:
             permissions = [permission() for permission in self.permission_classes_by_action[self.action]]
             return permissions
