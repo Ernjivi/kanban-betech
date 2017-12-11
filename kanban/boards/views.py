@@ -1,3 +1,13 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
 
-# Create your views here.
+from boards.models import Board
+from boards.serializers import BoardSerializer
+
+
+class BoardViewSet(ModelViewSet):
+    """
+    List, retrieve, add, update an instance of Board model.
+    """
+
+    queryset = Board.objects.all()
+    serializer_class = BoardSerializer
