@@ -3,9 +3,6 @@ from rest_framework.serializers import ModelSerializer
 from boards.models import Board, Card, CheckList, CheckItem
 
 
-class 
-
-
 class CardSerializer(ModelSerializer):
     """
     Serializer for Card model.
@@ -13,7 +10,7 @@ class CardSerializer(ModelSerializer):
 
     class Meta:
         model = Card
-        fields = ['id', 'name', 'assigned', 'due_date', 'created', 'modified']
+        fields = ['id', 'name', 'assigned', 'created', 'modified']
 
 
 class BoardSerializer(ModelSerializer):
@@ -25,4 +22,4 @@ class BoardSerializer(ModelSerializer):
 
     class Meta:
         model = Board
-        fields = ['id', 'owner', 'colobarators', 'created', 'modified']
+        fields = ['id', 'cards', 'created', 'modified']
