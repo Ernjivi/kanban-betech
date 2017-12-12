@@ -45,4 +45,4 @@ class BoardSerializer(ModelSerializer):
 
     class Meta:
         model = Board
-        fields = ['id', 'cards', 'created', 'modified']
+        fields = ['id', 'name', 'cards', 'created', 'modified']
