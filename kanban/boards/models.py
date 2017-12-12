@@ -53,7 +53,7 @@ class CheckList(models.Model):
     Check list model for cards
     """
 
-    card = models.ForeignKey(Card)
+    card = models.ForeignKey(Card, related_name='check_lists')
     name = models.CharField(max_length=255)
 
     created = models.DateTimeField(auto_now_add=True)
