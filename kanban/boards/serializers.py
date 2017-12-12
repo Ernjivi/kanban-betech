@@ -29,9 +29,11 @@ class CardSerializer(ModelSerializer):
     Serializer for Card model.
     """
 
+    check_lists = CheckListSerializer(many=True, read_only=True)
+
     class Meta:
         model = Card
-        fields = ['id', 'name', 'assigned', 'created', 'modified']
+        fields = ['id', 'name', 'board', 'check_lists']
 
 
 class BoardSerializer(ModelSerializer):
