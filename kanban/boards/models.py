@@ -68,6 +68,7 @@ class CheckItem(models.Model):
     Check Item in check list model.
     """
 
+    check_list = models.ForeignKey(CheckList, related_name='checks')
     text = models.CharField(max_length=255)
     status = models.BooleanField(default=False)
 
